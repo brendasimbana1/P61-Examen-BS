@@ -26,9 +26,8 @@ class Juego : public QMainWindow
 public:
     Juego(QWidget *parent = nullptr);
     ~Juego();
-
 protected:
-    virtual void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
 
 private slots:
     void on_btnArriba_released();
@@ -50,10 +49,10 @@ private:
     QImage *mImagen;
     QPainter *mPainter;
     QPoint m_centro;
-    int mAncho;
-    QColor mColor;
-    int mNumLineas;
-
+    int m_ancho;
+    int m_radio;
+    QColor m_color;
+    void dibujarCirculo(Circulo *);
 
 };
 #endif // JUEGO_H

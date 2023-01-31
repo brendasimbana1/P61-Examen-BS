@@ -16,21 +16,24 @@ public:
     explicit Configuracion(QWidget *parent = nullptr);
     ~Configuracion();
 
-    const QColor &color() const;
-    int dimension() const;
+    const QColor &color() ;
+    int dimension() ;
 
     void setColor(const QColor &newColor);
     void setDimension(int newDimension);
+    void setWidgetColor();
 
 private slots:
     void on_btnColor_released();
 
-private:
+    void on_inDimension_sliderReleased();
+
+protected:
     Ui::Configuracion *ui;
     QColor m_color;
     int m_dimension;
 
-    void setWidgetColor();
+
 };
 
 #endif // CONFIGURACION_H

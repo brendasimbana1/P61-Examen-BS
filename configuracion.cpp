@@ -1,5 +1,6 @@
 #include "configuracion.h"
 #include "ui_configuracion.h"
+#include <QDebug>
 
 Configuracion::Configuracion(QWidget *parent) :
     QDialog(parent),
@@ -17,7 +18,10 @@ Configuracion::~Configuracion()
 
 void Configuracion::on_btnColor_released()
 {
-
+    m_color = QColorDialog::getColor(m_color, this,
+                                     "Color de la circunferencia");
+    setColor(m_color);
+    setWidgetColor();
 }
 
 void Configuracion::setColor(const QColor &newColor)
@@ -32,6 +36,7 @@ void Configuracion::setDimension(int newDimension)
 
 void Configuracion::setWidgetColor()
 {
+
     int r = m_color.red();
     int g = m_color.green();
     int b = m_color.blue();
@@ -39,13 +44,25 @@ void Configuracion::setWidgetColor()
     ui->wigetColor->setStyleSheet(style);
 }
 
-const QColor &Configuracion::color() const
+const QColor &Configuracion::color()
 {
     return m_color;
 }
 
-int Configuracion::dimension() const
+int Configuracion::dimension()
 {
     return m_dimension;
 }
+
+
+void Configuracion::on_inDimension_sliderReleased()
+{
+    int dimen = ui->inDimension->value();
+    setDimension(dimen);
+    qDebug()<< m_dimension;
+    qDebug()<<dimen;
+    qDebug()<<dimension();
+}
+
+
 
