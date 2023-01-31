@@ -2,7 +2,16 @@
 #define JUEGO_H
 
 #include <QMainWindow>
+#include <QImage>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QPaintEvent>
 #include <QDebug>
+#include<QColor>
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QMessageBox>
+
 #include "configuracion.h"
 #include "circulo.h"
 
@@ -18,6 +27,9 @@ public:
     Juego(QWidget *parent = nullptr);
     ~Juego();
 
+protected:
+    virtual void paintEvent(QPaintEvent *event);
+
 private slots:
     void on_btnArriba_released();
 
@@ -32,7 +44,16 @@ private slots:
     void on_actionSalir_triggered();
 
 private:
+
     Ui::Juego *ui;
     Circulo *m_circulo;
+    QImage *mImagen;
+    QPainter *mPainter;
+    QPoint m_centro;
+    int mAncho;
+    QColor mColor;
+    int mNumLineas;
+
+
 };
 #endif // JUEGO_H
